@@ -1,0 +1,88 @@
+#urls.py
+
+from django.conf.urls import include, url
+from django.contrib import admin
+
+urlpatterns = [
+    url(r'^admin_tools/', include('admin_tools.urls')),
+	url(r'^api/', include('wheelstand.api.urls')),
+	url(r'^trim/', include('wheelstand.urls')),
+    url(r'^', include(admin.site.urls)),
+]
+
+from django.conf import settings
+from django.conf.urls import patterns
+
+if settings.DEBUG:
+    urlpatterns += patterns(
+        'django.views.static',
+        (r'^media/(?P<path>.*)',
+        'serve',
+        {'document_root': settings.MEDIA_ROOT}), )
+
+admin.site.site_header = 'Honda Wheelstand CMS'
+
+
+
+
+
+#settings.py
+
+INSTALLED_APPS = (
+	'django_admin_bootstrapped',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'wheelstand',
+    'imagekit',
+    'colorfield',
+    'rest_framework',
+    'drf_multiple_model',
+)
+
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
+        'APP_DIRS': False,
+        'OPTIONS': {
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+                'admin_tools.template_loaders.Loader',
+            ],
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '../public/media/')
+
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, '../public/static/')
+
+STATIC_URL = '/static/'
+
+FILE_UPLOAD_PERMISSIONS = 0664
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
+    'PAGE_SIZE': 0,
+}
+
+
+
+
+
+
+
