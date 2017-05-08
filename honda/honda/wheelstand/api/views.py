@@ -1,6 +1,6 @@
-from ..models import Models, Trim, ModelsShown, Accessories, Location, Colours, Interiors, Engines, Gallery, Transmissions, Features, InteriorColour, ExteriorColour
+from ..models import Models, Trim, ModelsShown, Accessories, Location, Colours, Interiors, Engines, Gallery, Transmission, Features, InteriorColour, ExteriorColour
 from rest_framework import viewsets
-from serializers import ModelsSerializer, TrimSerializer, ModelsShownSerializer, AccessoriesSerializer, LocationSerializer, ColoursSerializer, InteriorsSerializer, EnginesSerializer, InteriorsImageSerializer, TrimImageSerializer, GalleryImageSerializer, ModelsImageSerializer, GallerySerializer, TransmissionsSerializer, FeaturesSerializer, InteriorColourSerializer, ExteriorColourSerializer, ExteriorColourImageSerializer, ModelsShownImageSerializer
+from serializers import ModelsSerializer, TrimSerializer, ModelsShownSerializer, AccessoriesSerializer, LocationSerializer, ColoursSerializer, InteriorsSerializer, EnginesSerializer, InteriorsImageSerializer, TrimImageSerializer, GalleryImageSerializer, ModelsImageSerializer, GallerySerializer, TransmissionSerializer, FeaturesSerializer, InteriorColourSerializer, ExteriorColourSerializer, ExteriorColourImageSerializer, ModelsShownImageSerializer, InteriorColourImageSerializer
 from drf_multiple_model.views import MultipleModelAPIView
 
 
@@ -44,9 +44,9 @@ class EnginesViewSet(viewsets.ModelViewSet):
     serializer_class = EnginesSerializer
 
 
-class TransmissionsViewSet(viewsets.ModelViewSet):
-    queryset = Transmissions.objects.all()
-    serializer_class = TransmissionsSerializer
+class TransmissionViewSet(viewsets.ModelViewSet):
+    queryset = Transmission.objects.all()
+    serializer_class = TransmissionSerializer
 
 
 class FeaturesViewSet(viewsets.ModelViewSet):
@@ -88,8 +88,8 @@ class AllAPIView(MultipleModelAPIView):
         (Interiors.objects.all(), InteriorsSerializer),
         (Engines.objects.all(), EnginesSerializer),
         (Gallery.objects.all(), GallerySerializer),
-        (Transmissions.objects.all(), TransmissionsSerializer),
-        (Features.objects.all(), FeaturesSerializer),        
+        (Transmission.objects.all(), TransmissionSerializer),
+#        (Features.objects.all(), FeaturesSerializer),
         (ExteriorColour.objects.all(), ExteriorColourSerializer),
         (InteriorColour.objects.all(), InteriorColourSerializer),
     ]
@@ -106,4 +106,5 @@ class AllAPIImagesView(MultipleModelAPIView):
         (Models.objects.all(), ModelsImageSerializer),
         (ExteriorColour.objects.all(), ExteriorColourImageSerializer),
         (ModelsShown.objects.all(), ModelsShownImageSerializer),
+        (InteriorColour.objects.all(), InteriorColourImageSerializer),
     ]

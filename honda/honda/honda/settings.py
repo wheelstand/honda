@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'colorfield',
     'rest_framework',
     'drf_multiple_model',
+    'sortedm2m',
 )
 
 MIDDLEWARE_CLASSES = (
